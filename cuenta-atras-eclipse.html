@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cuenta atrás eclipse Tarazona</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:black;
+  color:white;
+  font-family:Arial,Helvetica,sans-serif;
+  text-align:center;
+}
+#caja{
+  padding:30px;
+  border-radius:20px;
+  background:#111;
+  box-shadow:0 0 40px rgba(255,255,255,0.2);
+}
+h1{margin-top:0}
+#tiempo{
+  font-size:50px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div id="caja">
+<h1>🌑 Eclipse Total — Tarazona</h1>
+<p>Inicio de la totalidad: 12 Agosto 2026 · 20:29:28</p>
+<div id="tiempo">cargando...</div>
+</div>
+
+<script>
+
+const objetivo = new Date(2026,7,12,20,29,28);
+
+function actualizar(){
+  const ahora = new Date();
+  let diff = objetivo - ahora;
+
+  if(diff<=0){
+    document.getElementById("tiempo").textContent="¡YA COMENZÓ!";
+    return;
+  }
+
+  let s = Math.floor(diff/1000);
+  let d = Math.floor(s/86400);
+  let h = Math.floor((s%86400)/3600);
+  let m = Math.floor((s%3600)/60);
+  let seg = s%60;
+
+  document.getElementById("tiempo").textContent=
+    d+" días  "+h+" h  "+m+" m  "+seg+" s";
+}
+
+actualizar();
+setInterval(actualizar,250);
+
+</script>
+
+</body>
+</html>
